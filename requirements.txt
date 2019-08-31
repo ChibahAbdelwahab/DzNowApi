@@ -18,3 +18,4 @@ djangorestframework==3.9.1
 django-generator
 gunicorn
 Scrapy
+Pillow
