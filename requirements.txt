@@ -16,3 +16,6 @@ django-heroku==0.3.1
 django-rest-auth==0.9.3
 djangorestframework==3.9.1
 django-generator
+django
+gunicorn
+django-heroku
