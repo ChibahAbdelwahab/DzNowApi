@@ -17,3 +17,4 @@ django-rest-auth==0.9.3
 djangorestframework==3.9.1
 django-generator
 gunicorn
+scrapy
