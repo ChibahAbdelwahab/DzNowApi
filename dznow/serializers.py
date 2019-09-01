@@ -10,8 +10,6 @@ class NewsSerializer(serializers.ModelSerializer):
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField()
-
     class Meta:
-        model = models.News 
-        fields = ('category', "image")
+        model = models.Category
+        fields = ('name', "image")

@@ -32,3 +32,9 @@ class NewsViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(Q(category=category))
         serializer = serializers.NewsSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """ViewSet for the News class"""
+
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategoriesSerializer

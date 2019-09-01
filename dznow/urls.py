@@ -8,12 +8,14 @@ from . import api
 
 router = routers.DefaultRouter()
 router.register(r'news', api.NewsViewSet)
+router.register(r'category', api.CategoryViewSet)
 
 
 def perform_save(request):
     print("saving")
     update()
     return HttpResponse('Updated', status=200)
+
 
 urlpatterns = (
     # urls for Django Rest Framework API
