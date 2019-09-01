@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -25,13 +27,14 @@ class NewsViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
-        queryset = News.objects.all()
+        queryset = News.objects.filter(date__gte=date.today(),
+                                       date__lte=date.today())
         category = self.request.query_params.get('category', None)
-        print(category)
         if category is not None:
             queryset = queryset.filter(Q(category=category))
         serializer = serializers.NewsSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """ViewSet for the News class"""

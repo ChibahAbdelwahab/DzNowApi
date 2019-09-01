@@ -21,4 +21,4 @@ class News(models.Model):
 
     class Meta:
         unique_together = ('date', 'title', 'source')
-        ordering = ('date',)
+        ordering = ('-date',)
