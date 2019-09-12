@@ -27,7 +27,7 @@ class NewsViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
-        queryset = News.objects.filter(date__gte=date.today())
+        queryset = News.objects.filter()
         category = self.request.query_params.get('category', None)
         if category is not None:
             queryset = queryset.filter(Q(category=category))
