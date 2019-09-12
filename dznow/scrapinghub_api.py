@@ -25,8 +25,8 @@ def update():
         r = requests.get(url)
         for i in r.json():
             i.pop("_type")
-            i["date"] = make_aware(datetime.fromtimestamp(i["date"] / 1000))
             try:
+                i["date"] = make_aware(datetime.fromtimestamp(i["date"] / 1000))
                 category, results = Category.objects.get_or_create(
                     name=i["category"])
                 i["category"] = category
