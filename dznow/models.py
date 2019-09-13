@@ -14,7 +14,7 @@ class News(models.Model):
     date = models.DateTimeField()
     author = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-    image = models.ImageField()
+    image = models.URLField()
     source = models.CharField(max_length=50)
     link = models.URLField()
     video = models.CharField(max_length=200, blank=True, null=True)
