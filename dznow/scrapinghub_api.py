@@ -26,7 +26,10 @@ def update():
         for i in r.json():
             i.pop("_type")
             try:
-                i["date"] = make_aware(datetime.fromtimestamp(i["date"] / 1000))
+                print(i["category"])
+                i["date"] = make_aware(
+                    datetime.fromtimestamp(i["date"] / 1000)).strftime(
+                    "%Y-%m-%d %H:%M:%S")
                 category, results = Category.objects.get_or_create(
                     name=i["category"])
                 i["category"] = category
