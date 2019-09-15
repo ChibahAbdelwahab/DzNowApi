@@ -30,7 +30,9 @@ class NewsViewSet(viewsets.ModelViewSet):
         queryset = News.objects.filter()
         category = self.request.query_params.get('category', None)
         if category is not None:
-            queryset = queryset.filter(Q(category=category))
+            queryset = queryset.filter(Q(category=category)).exclude(video=None)
+        if category == "videos":
+            queryset = queryset.exclude(video=None)
         serializer = serializers.NewsSerializer(queryset, many=True)
         return Response(serializer.data)
 
