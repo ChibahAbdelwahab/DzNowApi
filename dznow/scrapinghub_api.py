@@ -12,7 +12,7 @@ PROD_PROJECT_ID = "406520"
 
 def get_jobs():
     url = "https://storage.scrapinghub.com/jobq/" + PROD_PROJECT_ID + \
-          "/list?format=json&apikey=" + API_KEY + "&state=finished&count=3"
+          "/list?format=json&apikey=" + API_KEY + "&state=finished&count=10"
     r = requests.get(url)
     return r.json()
 
