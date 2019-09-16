@@ -34,9 +34,9 @@ def update():
                 if i["category"][-1:] == "s":
                     i["category"] = i["category"][:-1]
                 category = Category.objects.get(name=i["category"])
+                if category is None:
+                    Category.objects.get(name="Divers")
                 i["category"] = category
                 News.objects.create(**i)
             except Exception as e:
                 print(e)
-
-
