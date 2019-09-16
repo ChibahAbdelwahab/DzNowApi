@@ -4,7 +4,7 @@ from rest_framework.exceptions import ValidationError
 
 
 class Category(models.Model):
-    image = models.URLField()
+    image = models.CharField(max_length=1000)
     name = models.CharField(max_length=100, primary_key=True)
 
 
