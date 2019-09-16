@@ -32,6 +32,15 @@ def update():
                     "%Y-%m-%d %H:%M:%S")
                 category, results = Category.objects.get_or_create(
                     name=i["category"])
+                try:
+                    content = "".join(str(x).strip() for x in i["content"])
+                    i['content'] = content
+                except:
+                    pass
+                try:
+                    i["content"] = i["content"].strip()
+                except:
+                    pass
                 i["category"] = category
                 News.objects.create(**i)
             except Exception as e:
