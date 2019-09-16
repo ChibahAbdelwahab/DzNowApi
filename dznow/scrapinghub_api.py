@@ -33,7 +33,8 @@ def update():
                 i["category"] = i["category"].lower().capitalize()
                 if i["category"][-1:] == "s":
                     i["category"] = i["category"][:-1]
-                category = Category.objects.get(name=i["category"])
+                category, res = Category.objects.get_or_create(
+                    name=i["category"])
                 if category is None:
                     Category.objects.get(name="Divers")
                 i["category"] = category
