@@ -30,17 +30,10 @@ def update():
                 i["date"] = make_aware(
                     datetime.fromtimestamp(i["date"] / 1000)).strftime(
                     "%Y-%m-%d %H:%M:%S")
-                category, results = Category.objects.get_or_create(
-                    name=i["category"])
-                try:
-                    content = "".join(str(x).strip() for x in i["content"])
-                    i['content'] = content
-                except:
-                    pass
-                try:
-                    i["content"] = i["content"].strip()
-                except:
-                    pass
+                i["category"] = i["category"].lower().capitalize()
+                if i["category"][-1:] == "s":
+                    i["category"] = i["category"][:-1]
+                category = Category.objects.get(name=i["category"])
                 i["category"] = category
                 News.objects.create(**i)
             except Exception as e:
