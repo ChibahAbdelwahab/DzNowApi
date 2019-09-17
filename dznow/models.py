@@ -1,6 +1,11 @@
 # Create your models here.
+from argparse import _
+
 from django.db import models
 from rest_framework.exceptions import ValidationError
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from fcm_django.fcm import fcm_send_topic_message
 
 
 class Category(models.Model):
@@ -32,3 +37,15 @@ class News(models.Model):
         if self.category.name == "videos" and self.video is None:
             raise ValidationError(
                 _('Video must not be null for video category'))
+
+
+# Notify users in FCM
+@receiver(post_save, sender=News, dispatch_uid="notify_users_fcm")
+def notify_users(sender, instance, **kwargs):
+    title = instance.title[:30] + ".." if len(
+        instance.title) > 30 else instance.title
+    resume = instance.resume[:40] + ".." if len(
+        instance.resume) > 40 else instance.resume
+    fcm_send_topic_message(topic_name=instance.category.name,
+                           message_body=resume,
+                           message_title=title)

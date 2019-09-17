@@ -19,3 +19,4 @@ django-generator
 gunicorn
 Scrapy
 Pillow
+fcm-django

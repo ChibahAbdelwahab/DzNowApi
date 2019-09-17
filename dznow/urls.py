@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.urls import path, include
+from fcm_django.api.rest_framework import FCMDeviceAuthorizedViewSet
 from rest_framework import routers
 import requests
 
@@ -9,6 +10,7 @@ from . import api
 router = routers.DefaultRouter()
 router.register(r'news', api.NewsViewSet)
 router.register(r'category', api.CategoryViewSet)
+router.register(r'devices', FCMDeviceAuthorizedViewSet)
 
 
 def perform_save(request):

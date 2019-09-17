@@ -41,8 +41,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dznow',
     'rest_framework',
+    "fcm_django",
 ]
-
+FCM_DJANGO_SETTINGS = {
+    "APP_VERBOSE_NAME": "dznow1",
+    # default: _('FCM Django')
+    "FCM_SERVER_KEY": "AAAA3mb_A3U:APA91bET0ep-tlAVQ5YAf9Wi67hfN6GAky6l7DUEjM93-bAmRIFWltcxoBuUWu3qMleAiPHP0hPU9qN-wYivaPRGzeTWopN-eiO7vgZGwm1Bo0kXxN7Cr-sNaB2RLOz136q3Alk4pzjG",
+    # true if you want to have only one active device per registered user at a time
+    # default: False
+    "ONE_DEVICE_PER_USER": False,
+    # devices to which notifications cannot be sent,
+    # are deleted upon receiving error response from FCM
+    # default: False
+    "DELETE_INACTIVE_DEVICES": False,
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

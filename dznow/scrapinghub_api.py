@@ -16,7 +16,9 @@ def get_jobs():
     r = requests.get(url)
     return r.json()
 
+from fcm_django.fcm import fcm_send_topic_message
 
+fcm_send_topic_message(topic_name='My topic', message_body='Hello', message_title='A message')
 def update():
     for data in get_jobs():
         id = data["key"]
