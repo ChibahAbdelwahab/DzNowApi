@@ -35,11 +35,10 @@ class NewsViewSet(viewsets.ModelViewSet):
             queryset = queryset.exclude(video=None)
         serializer = serializers.NewsSerializer(queryset, many=True)
         return Response(serializer.data)
-
     @action(detail=True)
     def save(self, request, *args, **kwargs):
         print(request.__dict__)
-        SavedArticle(user=request.user, news=kwargs["pk"]).save()
+        SavedArticle(user=request.resource_owner, news=kwargs["pk"]).save()
 
     @action(detail=True)
     def remove(self, request, *args, **kwargs):
