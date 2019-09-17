@@ -1,10 +1,7 @@
-import requests
 from datetime import datetime
 
+import requests
 from django.utils.timezone import make_aware
-from scrapinghub import ScrapinghubClient
-from scrapy.http import TextResponse
-from scrapy.utils.project import get_project_settings
 
 from .models import *
 
