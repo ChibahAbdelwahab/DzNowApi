@@ -44,6 +44,12 @@ class NewsViewSet(viewsets.ModelViewSet):
     def remove(self, request, *args, **kwargs):
         SavedArticle(user=request.user, news=kwargs["pk"]).delete()
 
+    @action(detail=False)
+    def saved(self, request, *args, **kwargs):
+        queryset = SavedArticle.objects.filter(user=request.user)
+        serializer = serializers.SavedArticleSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """ViewSet for the News class"""
