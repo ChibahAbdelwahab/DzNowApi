@@ -2,23 +2,36 @@ import requests
 from datetime import datetime
 
 from django.utils.timezone import make_aware
+from scrapinghub import ScrapinghubClient
 from scrapy.http import TextResponse
+from scrapy.utils.project import get_project_settings
 
 from .models import *
 
 API_KEY = "be9b53f6ff094d3f8d37c8b63bb1fcd8"
-PROD_PROJECT_ID = "406520"
+PROJECT_ID = "406520"
+
+
+# client = ScrapinghubClient(API_KEY)
+# project = client.get_project(PROJECT_ID)
+#
+#
+# def run_jobs():
+#     for ii in project.spiders.list():
+#         try:
+#             spider = project.spiders.get(ii)
+#             spider.jobs.run()
+#         except Exception as e:
+#             print(e)
 
 
 def get_jobs():
-    url = "https://storage.scrapinghub.com/jobq/" + PROD_PROJECT_ID + \
+    url = "https://storage.scrapinghub.com/jobq/" + PROJECT_ID + \
           "/list?format=json&apikey=" + API_KEY + "&state=finished&count=10"
     r = requests.get(url)
     return r.json()
 
-from fcm_django.fcm import fcm_send_topic_message
 
-fcm_send_topic_message(topic_name='My topic', message_body='Hello', message_title='A message')
 def update():
     for data in get_jobs():
         id = data["key"]

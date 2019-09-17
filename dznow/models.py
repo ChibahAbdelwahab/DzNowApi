@@ -38,7 +38,6 @@ class News(models.Model):
             raise ValidationError(
                 _('Video must not be null for video category'))
 
-
 # Notify users in FCM
 @receiver(post_save, sender=News, dispatch_uid="notify_users_fcm")
 def notify_users(sender, instance, **kwargs):
@@ -49,3 +48,4 @@ def notify_users(sender, instance, **kwargs):
     fcm_send_topic_message(topic_name=instance.category.name,
                            message_body=resume,
                            message_title=title)
+    print("sended")
