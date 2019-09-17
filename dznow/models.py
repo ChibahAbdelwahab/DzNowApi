@@ -6,6 +6,7 @@ from rest_framework.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from fcm_django.fcm import fcm_send_topic_message
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -38,6 +39,7 @@ class News(models.Model):
             raise ValidationError(
                 _('Video must not be null for video category'))
 
+
 # Notify users in FCM
 @receiver(post_save, sender=News, dispatch_uid="notify_users_fcm")
 def notify_users(sender, instance, **kwargs):
@@ -49,3 +51,8 @@ def notify_users(sender, instance, **kwargs):
                            message_body=resume,
                            message_title=title)
     print("sended")
+
+
+class SavedArticle(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    news = models.ForeignKey(News, on_delete=models.CASCADE)
