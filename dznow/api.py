@@ -38,6 +38,7 @@ class NewsViewSet(viewsets.ModelViewSet):
 
     @action(detail=True)
     def save(self, request, *args, **kwargs):
+        print(request.__dict__)
         SavedArticle(user=request.user, news=kwargs["pk"]).save()
 
     @action(detail=True)
