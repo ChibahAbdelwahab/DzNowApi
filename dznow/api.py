@@ -44,7 +44,8 @@ class NewsViewSet(viewsets.ModelViewSet):
 
     @action(detail=True)
     def remove(self, request, *args, **kwargs):
-        SavedArticle(user=request.user, news=kwargs["pk"]).delete()
+        news = News.objects.get(pk=kwargs["pk"])
+        SavedArticle(user=request.user, news=news).delete()
 
     @action(detail=False)
     def saved(self, request, *args, **kwargs):
