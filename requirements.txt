@@ -20,3 +20,4 @@ Scrapy
 Pillow
 fcm-django
 social-auth-app-django
+firebase_admin
