@@ -41,7 +41,10 @@ class NewsViewSet(viewsets.ModelViewSet):
         print(request.__dict__)
         iduser = request.query_params["userid"]
         news = News.objects.get(pk=kwargs["pk"])
-        SavedArticle(iduser=iduser, news=news).save()
+        try:
+            SavedArticle(iduser=iduser, news=news).save()
+        except:
+            pass
         serializer = serializers.NewsSerializer(news)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
