@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .models import News, SavedArticle
 from . import models
 from . import serializers
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 
 
 class NewsViewSet(viewsets.ModelViewSet):
@@ -42,13 +42,15 @@ class NewsViewSet(viewsets.ModelViewSet):
         iduser = request.query_params["userid"]
         news = News.objects.get(pk=kwargs["pk"])
         SavedArticle(iduser=iduser, news=news).save()
+        return Response({"created": "OK"}, status=status.HTTP_201_CREATED)
 
     @action(detail=True)
     def remove(self, request, *args, **kwargs):
         news = News.objects.get(pk=kwargs["pk"])
         iduser = request.query_params["userid"]
         SavedArticle(iduser=iduser, news=news).delete()
-        return
+        return Response({"removed": "OK"}, status=status.HTTP_201_CREATED)
+
     @action(detail=False)
     def saved(self, request, *args, **kwargs):
         iduser = request.query_params["userid"]
