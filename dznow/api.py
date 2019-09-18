@@ -42,14 +42,16 @@ class NewsViewSet(viewsets.ModelViewSet):
         iduser = request.query_params["userid"]
         news = News.objects.get(pk=kwargs["pk"])
         SavedArticle(iduser=iduser, news=news).save()
-        return Response({"created": "OK"}, status=status.HTTP_201_CREATED)
+        serializer = serializers.NewsSerializer(news)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @action(detail=True)
     def remove(self, request, *args, **kwargs):
         news = News.objects.get(pk=kwargs["pk"])
         iduser = request.query_params["userid"]
         SavedArticle(iduser=iduser, news=news).delete()
-        return Response({"removed": "OK"}, status=status.HTTP_201_CREATED)
+        serializer = serializers.NewsSerializer(news)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @action(detail=False)
     def saved(self, request, *args, **kwargs):
