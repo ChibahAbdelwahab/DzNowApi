@@ -15,7 +15,7 @@ class CategoriesSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 
-class SavedArticleSerializer(serializers.ModelSerializer):
+class SavedArticleListSerializer(serializers.ModelSerializer):
     # news = NewsSerializer()
     id = serializers.ReadOnlyField(source="news.id")
     title = serializers.ReadOnlyField(source="news.title")
@@ -34,3 +34,9 @@ class SavedArticleSerializer(serializers.ModelSerializer):
         model = models.SavedArticle
         fields = ("id", "title", "content", "resume", "author", "link", "video",
                   "source", "date", "category", "image")
+
+
+class SavedArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.SavedArticle
+        fields = ("__all__")
