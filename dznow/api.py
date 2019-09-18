@@ -50,7 +50,7 @@ class NewsViewSet(viewsets.ModelViewSet):
         news = News.objects.get(pk=kwargs["pk"])
         iduser = request.query_params["userid"]
         try:
-            SavedArticle(iduser=iduser, news=news).delete()
+            SavedArticle.objects.filter(iduser=iduser, news=news).delete()
         except Exception as e:
             print(e)
         serializer = serializers.NewsSerializer(news)
