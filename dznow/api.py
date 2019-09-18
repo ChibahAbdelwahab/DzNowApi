@@ -57,6 +57,7 @@ class NewsViewSet(viewsets.ModelViewSet):
     def saved(self, request, *args, **kwargs):
         iduser = request.query_params["userid"]
         queryset = SavedArticle.objects.filter(iduser=iduser)
+        print(queryset)
         serializer = serializers.SavedArticleSerializer(queryset, many=True)
         return Response(serializer.data)
 

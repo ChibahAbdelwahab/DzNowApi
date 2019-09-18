@@ -53,5 +53,8 @@ def notify_users(sender, instance, **kwargs):
 
 
 class SavedArticle(models.Model):
-    news = models.ForeignKey(News, on_delete=models.CASCADE,default=1)
+    news = models.ForeignKey(News, on_delete=models.CASCADE, default=1)
     iduser = models.CharField(max_length=1000, default="1")
+
+    class Meta:
+        unique_together = ('news', 'iduser',)

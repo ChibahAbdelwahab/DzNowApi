@@ -16,6 +16,9 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 
 class SavedArticleSerializer(serializers.ModelSerializer):
+    news = NewsSerializer()
+
     class Meta:
+        depth = 1
         model = models.SavedArticle
-        field = ("__all__")
+        fields = ("news",)
