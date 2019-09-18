@@ -16,9 +16,21 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 
 class SavedArticleSerializer(serializers.ModelSerializer):
-    news = NewsSerializer()
+    # news = NewsSerializer()
+    id = serializers.ReadOnlyField(source="news.id")
+    title = serializers.ReadOnlyField(source="news.title")
+    content = serializers.ReadOnlyField(source="news.content")
+    resume = serializers.ReadOnlyField(source="news.resume")
+    author = serializers.ReadOnlyField(source="news.author")
+    link = serializers.ReadOnlyField(source="news.link")
+    video = serializers.ReadOnlyField(source="news.video")
+    category = serializers.ReadOnlyField(source="news.category.name")
+    source = serializers.ReadOnlyField(source="news.source")
+    date = serializers.ReadOnlyField(source="news.date")
+    image = serializers.ReadOnlyField(source="news.image")
 
     class Meta:
-        depth = 1
+        depth = 0
         model = models.SavedArticle
-        fields = ("news",)
+        fields = ("id", "title", "content", "resume", "author", "link", "video",
+                  "source", "date", "category", "image")
