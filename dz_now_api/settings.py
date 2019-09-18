@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'dznow',
     'rest_framework',
     "fcm_django",
-    'oauth2_provider',
     'social_django',
-    'rest_framework_social_oauth2',
 ]
 FCM_DJANGO_SETTINGS = {
     "APP_VERBOSE_NAME": "dznow1",
@@ -67,9 +65,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
-
 ]
 
 ROOT_URLCONF = 'dz_now_api.urls'
@@ -152,55 +147,18 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        # OAuth
-        # 'oauth2_provider.ext.rest_framework.OAuth2Authentication',  # django-oauth-toolkit < 1.0.0
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        # django-oauth-toolkit >= 1.0.0
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
-    )
-}
-
 AUTHENTICATION_BACKENDS = (
-
-    # Others auth providers (e.g. Google, OpenId, etc)
-    'oauth2_provider.backends.OAuth2Backend',
-    # Facebook OAuth2
-    'social_core.backends.facebook.FacebookAppOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
-
-    # django-rest-framework-social-oauth2
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
-
-    # Django
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-
 )
 
-# Facebook configuration
-SOCIAL_AUTH_FACEBOOK_KEY = '2524226157807587'
-SOCIAL_AUTH_FACEBOOK_SECRET = '0f1666b5f33e14d9453d44085fa38f2f'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316033341743-nmjg8mqobr16852e4a010jdfjkh25tdo.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'uqtQJQadvTIYd9RYhdzUXdri'
 
-# Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id, name, email'
-}
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
-SOCIAL_AUTH_PIPELINE = (
-    'social_core.pipeline.social_auth.social_details',
-    'social_core.pipeline.social_auth.social_uid',
-    'social_core.pipeline.social_auth.auth_allowed',
-    'social_core.pipeline.social_auth.social_user',
-    'social_core.pipeline.user.get_username',
-    'social_core.pipeline.social_auth.associate_by_email',
-    'social_core.pipeline.user.create_user',
-    'social_core.pipeline.social_auth.associate_user',
-    'social_core.pipeline.social_auth.load_extra_data',
-    'social_core.pipeline.user.user_details',
-)
+LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 # Activate Django-Heroku.
 django_heroku.settings(locals())

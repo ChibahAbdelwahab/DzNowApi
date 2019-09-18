@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
     path('dznowapi/', include("dznow.urls")),
     path('admin/', admin.site.urls),
-    path('auth/', include('rest_framework_social_oauth2.urls')),
+    path('', include('social_django.urls', namespace='social')),
+    # path('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL},
+    #      name='logout'),
 ]
