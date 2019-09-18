@@ -55,4 +55,4 @@ def notify_users(sender, instance, **kwargs):
 
 class SavedArticle(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
+    iduser = models.CharField(max_length=1000,default="1")

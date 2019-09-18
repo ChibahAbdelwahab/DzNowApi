@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'dznow',
     'rest_framework',
     "fcm_django",
-    'social_django',
 ]
 FCM_DJANGO_SETTINGS = {
     "APP_VERBOSE_NAME": "dznow1",
@@ -147,18 +146,20 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'dznow.firebaseAuthentification.FirebaseAuthentication',
+    ],
+}
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316033341743-nmjg8mqobr16852e4a010jdfjkh25tdo.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'uqtQJQadvTIYd9RYhdzUXdri'
+DRF_FIREBASE_AUTH = {
+    'FIREBASE_SERVICE_ACCOUNT_KEY': 'configuration.json'
+}
 
-LOGIN_URL = '/auth/login/google-oauth2/'
+FIREBASE_KEY = 'configuration.json'
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
