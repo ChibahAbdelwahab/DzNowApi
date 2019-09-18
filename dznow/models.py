@@ -50,9 +50,8 @@ def notify_users(sender, instance, **kwargs):
     fcm_send_topic_message(topic_name=instance.category.name,
                            message_body=resume,
                            message_title=title)
-    print("sended")
 
 
 class SavedArticle(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    news = models.ForeignKey(News, on_delete=models.CASCADE,default=1)
     iduser = models.CharField(max_length=1000, default="1")

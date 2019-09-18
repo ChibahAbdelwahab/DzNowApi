@@ -39,17 +39,20 @@ class NewsViewSet(viewsets.ModelViewSet):
     @action(detail=True)
     def save(self, request, *args, **kwargs):
         print(request.__dict__)
+        iduser = request.query_params["userid"]
         news = News.objects.get(pk=kwargs["pk"])
-        SavedArticle(user=request.user, news=news).save()
+        SavedArticle(iduser=iduser, news=news).save()
 
     @action(detail=True)
     def remove(self, request, *args, **kwargs):
         news = News.objects.get(pk=kwargs["pk"])
-        SavedArticle(user=request.user, news=news).delete()
-
+        iduser = request.query_params["userid"]
+        SavedArticle(iduser=iduser, news=news).delete()
+        return
     @action(detail=False)
     def saved(self, request, *args, **kwargs):
-        queryset = SavedArticle.objects.filter(user=request.user)
+        iduser = request.query_params["userid"]
+        queryset = SavedArticle.objects.filter(iduser=iduser)
         serializer = serializers.SavedArticleSerializer(queryset, many=True)
         return Response(serializer.data)
 
