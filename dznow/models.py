@@ -47,9 +47,11 @@ def notify_users(sender, instance, **kwargs):
         instance.title) > 30 else instance.title
     resume = instance.resume[:40] + ".." if len(
         instance.resume) > 40 else instance.resume
-    fcm_send_topic_message(topic_name=instance.category.name,
-                           message_body=resume,
-                           message_title=title)
+    import pusher
+    channels_client = pusher.Pusher(app_id='864235', key='9398600db5f6a4b06201',
+                                    secret='815d4cc0db7c633aa713',
+                                    cluster='ap4', ssl=True)
+    channels_client.trigger(instance.category.name, title, resume)
 
 
 class SavedArticle(models.Model):
