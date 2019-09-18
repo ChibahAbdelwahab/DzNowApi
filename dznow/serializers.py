@@ -12,7 +12,7 @@ class NewsSerializer(serializers.ModelSerializer):
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
-        fields = ('_all__')
+        fields = ('__all__')
 
 
 class SavedArticleSerializer(serializers.ModelSerializer):
