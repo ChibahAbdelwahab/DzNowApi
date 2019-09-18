@@ -1,114 +1,72 @@
 [
   {
     "model": "dznow.category",
-    "pk": "Actualit\u00e9",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Actualit\u00e9s",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Culture",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Des Gens et des Faits",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
     "pk": "Divers",
     "fields": {
-      "image": ""
+      "image": "https://images.pexels.com/photos/920115/pexels-photo-920115.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     }
   },
   {
     "model": "dznow.category",
     "pk": "Economie",
     "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Monde",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "R\u00e9gions",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "SANTE - SCIENCE - TECHNOLOGIE",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Soci\u00e9t\u00e9",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Sport",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "Sports",
-    "fields": {
-      "image": ""
-    }
-  },
-  {
-    "model": "dznow.category",
-    "pk": "economie",
-    "fields": {
-      "image": ""
+      "image": "https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     }
   },
   {
     "model": "dznow.category",
     "pk": "international",
     "fields": {
-      "image": ""
+      "image": "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     }
   },
   {
     "model": "dznow.category",
-    "pk": "sport",
+    "pk": "Monde",
     "fields": {
-      "image": ""
+      "image": "https://images.pexels.com/photos/269633/pexels-photo-269633.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+  },
+  {
+    "model": "dznow.category",
+    "pk": "SANTE - SCIENCE - TECHNOLOGIE",
+    "fields": {
+      "image": "https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+  },
+  {
+    "model": "dznow.category",
+    "pk": "Soci\u00e9t\u00e9",
+    "fields": {
+      "image": "https://images.pexels.com/photos/1559111/pexels-photo-1559111.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+  },
+  {
+    "model": "dznow.category",
+    "pk": "Sport",
+    "fields": {
+      "image": "https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+  },
+  {
+    "model": "dznow.category",
+    "pk": "Video",
+    "fields": {
+      "image": "https://images.pexels.com/photos/34407/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     }
   },
   {
     "model": "dznow.category",
     "pk": "videos",
     "fields": {
-      "image": "t\u00e9l\u00e9chargement_3.jpeg"
+      "image": "https://images.pexels.com/photos/34407/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    }
+  },
+  {
+    "model": "dznow.category",
+    "pk": "Videos",
+    "fields": {
+      "image": "https://images.pexels.com/photos/34407/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     }
   }
 ]
