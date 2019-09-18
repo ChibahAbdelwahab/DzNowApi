@@ -49,7 +49,10 @@ class NewsViewSet(viewsets.ModelViewSet):
     def remove(self, request, *args, **kwargs):
         news = News.objects.get(pk=kwargs["pk"])
         iduser = request.query_params["userid"]
-        SavedArticle(iduser=iduser, news=news).delete()
+        try:
+            SavedArticle(iduser=iduser, news=news).delete()
+        except Exception as e:
+            print(e)
         serializer = serializers.NewsSerializer(news)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
